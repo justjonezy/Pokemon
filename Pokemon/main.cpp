@@ -1,81 +1,79 @@
+// pokemon_selection.cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
-// Define an enum for Pokemon choices
+// Step 1: Create an enum to represent Pokemon options
 enum PokemonChoice {
+    InvalidChoice, // For invalid selections
     Charmander,
     Bulbasaur,
-    Squirtle,
-    InvalidChoice
+    Squirtle
 };
 
 int main() {
-    // Variables to store player name and chosen Pokemon
-    string player_name;
-    PokemonChoice chosen_pokemon = InvalidChoice; // Default to an invalid choice
+    // Variable to store the player's name
+    std::string player_name;
 
-    // Introduction by the Professor
-    cout << "Professor Oak: Hello there! Welcome to the world of Pokemon!\n";
-    cout << "Professor Oak: My name is Oak. People call me the Pokemon Professor!\n";
-    cout << "Professor Oak: But enough about me. Let's talk about you!\n";
+    // Ask the player for their name
+    std::cout << "Welcome, Trainer! Professor Oak here. What's your name? ";
+    std::getline(std::cin, player_name);
 
-    // Taking player name as input
-    cout << "Professor Oak: First, tell me, what’s your name?\n";
-    cin >> player_name;
+    // Respond with a congratulatory message
+    std::cout << "Congratulations, " << player_name << "! You're officially a Pokemon Trainer now—your adventure begins!" << std::endl;
 
-    cout << "Professor Oak: Ah, " << player_name << "! What a fantastic name!\n";
-    cout << "Professor Oak: You must be eager to start your adventure. But first, you’ll need a Pokemon of your own!\n";
+    // Step 2: Create chosen_pokemon variable, initialize to InvalidChoice
+    PokemonChoice chosen_pokemon = InvalidChoice;
 
-    // Presenting Pokemon choices
-    cout << "Professor Oak: I have three Pokemon here with me. They’re all quite feisty!\n";
-    cout << "Professor Oak: Choose wisely...\n";
-    cout << "1. Charmander - The fire type. A real hothead!\n";
-    cout << "2. Bulbasaur - The grass type. Calm and collected!\n";
-    cout << "3. Squirtle - The water type. Cool as a cucumber!\n";
+    // Step 3: Introduce the Pokemon options with Professor Oak's dialogue
+    std::cout << "Now, " << player_name << ", let's choose your first Pokemon!" << std::endl;
+    std::cout << "Here are your options:" << std::endl;
+    std::cout << "1. Charmander - The fire type. A real hothead!" << std::endl;
+    std::cout << "2. Bulbasaur - The grass type. Calm and collected!" << std::endl;
+    std::cout << "3. Squirtle - The water type. Cool as a cucumber!" << std::endl;
 
+    // Prompt the player to choose a Pokemon
+    std::cout << "Enter 1 for Charmander, 2 for Bulbasaur, or 3 for Squirtle: ";
     int choice;
-    cout << "Professor Oak: So, which one will it be? Enter the number of your choice: ";
-    cin >> choice;
+    std::cin >> choice;
 
-    // Map the integer choice to the corresponding enum value
-    switch(choice) {
+    // Step 4: Use a switch statement to assign the chosen Pokemon
+    // Step 5: Default to Charmander for invalid choices
+    switch (choice) {
         case 1:
             chosen_pokemon = Charmander;
+            std::cout << "Professor Oak: A fiery choice! Charmander is yours!" << std::endl;
             break;
         case 2:
             chosen_pokemon = Bulbasaur;
+            std::cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!" << std::endl;
             break;
         case 3:
             chosen_pokemon = Squirtle;
+            std::cout << "Professor Oak: Splendid! Squirtle will keep you cool under pressure!" << std::endl;
             break;
         default:
-            chosen_pokemon = InvalidChoice;
+            chosen_pokemon = Charmander; // Default to Charmander for invalid choices
+            std::cout << "Professor Oak: Hmm, that doesn't seem right. Let me choose for you… Charmander it is!" << std::endl;
             break;
     }
 
-    // Respond based on the chosen Pokemon
-    switch(chosen_pokemon) {
+    // Step 6 (Bonus): Concluding message to announce the chosen Pokemon
+    std::cout << "Professor Oak: That’s it, " << player_name << "! You and your ";
+    switch (chosen_pokemon) { // Switch to display the final chosen Pokemon
         case Charmander:
-            cout << "Professor Oak: A fiery choice! Charmander is yours!\n";
+            std::cout << "Charmander";
             break;
         case Bulbasaur:
-            cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!\n";
+            std::cout << "Bulbasaur";
             break;
         case Squirtle:
-            cout << "Professor Oak: Splendid! Squirtle will keep you cool under pressure!\n";
+            std::cout << "Squirtle";
             break;
         default:
-            cout << "Professor Oak: Hmm, that doesn't seem right. Let me choose for you...\n";
-            chosen_pokemon = Charmander; // Default to Charmander if invalid choice
-            cout << "Professor Oak: Just kidding! Let's go with Charmander, the fiery dragon in the making!\n";
+            std::cout << "Charmander"; // Shouldn't reach here due to prior default
             break;
     }
-
-    // Concluding the first chapter
-    cout << "Professor Oak: " << (chosen_pokemon == Charmander ? "Charmander" : chosen_pokemon == Bulbasaur ? "Bulbasaur" : "Squirtle")
-              << " and you, " << player_name << ", are going to be the best of friends!\n";
-    cout << "Professor Oak: Your journey begins now! Get ready to explore the vast world of Pokemon!\n";
+    std::cout << " are about to form an unstoppable bond! Take your first step into the vast world of Pokemon… Who knows what mysteries await you?" << std::endl;
 
     return 0;
 }
